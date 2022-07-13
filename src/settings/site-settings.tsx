@@ -15,7 +15,7 @@ export const siteSettings = {
   },
   logo: {
     url: "/assets/images/logo.svg",
-    alt: "ChawkBazar",
+    alt: "LeanCommerce",
     href: "/",
     width: 95,
     height: 30,
