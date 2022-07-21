@@ -22,58 +22,59 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetStaticProps } from "next";
 
 const flashSaleCarouselBreakpoint = {
-	"1280": {
-		slidesPerView: 1,
-		spaceBetween: 28,
-	},
-	"768": {
-		slidesPerView: 2,
-		spaceBetween: 20,
-	},
-	"0": {
-		slidesPerView: 1,
-		spaceBetween: 12,
-	},
+  "1280": {
+    slidesPerView: 1,
+    spaceBetween: 28,
+  },
+  "768": {
+    slidesPerView: 2,
+    spaceBetween: 20,
+  },
+  "0": {
+    slidesPerView: 1,
+    spaceBetween: 12,
+  },
 };
 
 export default function Home() {
-	return (
-		<Container>
-			<HeroWithCategory bannerData={heroBanner} />
-			<ProductsWithFlashSale carouselBreakpoint={flashSaleCarouselBreakpoint} />
-			<BannerGridBlock />
-			<CategoryGridBlock sectionHeading="text-featured-categories" />
-			<Divider />
-			<BestSellerProductFeed />
-			<BannerCard
-				key={`banner--key${banner.id}`}
-				banner={banner}
-				href={`${ROUTES.COLLECTIONS}/${banner.slug}`}
-				className="mb-12 lg:mb-14 xl:mb-16 pb-0.5 lg:pb-1 xl:pb-0"
-			/>
-			<NewArrivalsProductFeed />
-			<Divider />
-			<BrandBlock sectionHeading="text-top-brands" />
-			<FeatureBlock />
-			<CollectionBlock data={collection} />
-			<DownloadApps />
-			<Support />
-			<Subscription />
-		</Container>
-	);
+  return (
+    <Container>
+      <HeroWithCategory bannerData={heroBanner} />
+      <ProductsWithFlashSale carouselBreakpoint={flashSaleCarouselBreakpoint} />
+      <BannerGridBlock />
+      <CategoryGridBlock sectionHeading="text-featured-categories" />
+      <Divider />
+      <BestSellerProductFeed />
+      <BannerCard
+        key={`banner--key${banner.id}`}
+        banner={banner}
+        href={`${ROUTES.COLLECTIONS}/${banner.slug}`}
+        className="mb-12 lg:mb-14 xl:mb-16 pb-0.5 lg:pb-1 xl:pb-0"
+      />
+      <NewArrivalsProductFeed />
+      <Divider />
+      <BrandBlock sectionHeading="text-top-brands" />
+      <FeatureBlock />
+      <CollectionBlock data={collection} />
+      <DownloadApps />
+      <Support />
+      <Subscription />
+    </Container>
+  );
 }
 
 Home.Layout = Layout;
+Home.isAuthorized = true;
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-	return {
-		props: {
-			...(await serverSideTranslations(locale!, [
-				"common",
-				"forms",
-				"menu",
-				"footer",
-			])),
-		},
-	};
+  return {
+    props: {
+      ...(await serverSideTranslations(locale!, [
+        "common",
+        "forms",
+        "menu",
+        "footer",
+      ])),
+    },
+  };
 };
